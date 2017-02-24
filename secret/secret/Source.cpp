@@ -2,6 +2,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_primitives.h>
 
 //function to detect collision
 //paramaters are x & y coordinates of top left corner of first box, then its width and height
@@ -18,9 +19,9 @@ const int BOUNCER_SIZE = 32;
 enum MYKEYS {
 	KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT
 };
-enum MYKEYS2 {
-	KEY_W, KEY_S, KEY_A, KEY_D
-};
+//enum MYKEYS2 {
+//	KEY_W, KEY_S, KEY_A, KEY_D
+//};
 
 
 int main()
@@ -32,12 +33,15 @@ int main()
 	float bouncer_x = SCREEN_W / 2.0 - BOUNCER_SIZE / 2.0;
 	float bouncer_y = SCREEN_H / 2.0 - BOUNCER_SIZE / 2.0;
 	bool key[4] = { false, false, false, false };
-	ALLEGRO_BITMAP *bouncer2 = NULL;
-	float bouncer2_x = 30;
-	float bouncer2_y = 40;
-	bool key2[4] = { false, false, false, false };
+	//ALLEGRO_BITMAP *bouncer2 = NULL;
+	//float bouncer2_x = 30;
+	/*float bouncer2_y = 40;
+	bool key2[4] = { false, false, false, false };*/
 	bool redraw = true;
 	bool doexit = false;
+	/////
+	al_init();
+	al_init_primitives_addon();
 
 	//including some error messages to help debug
 	if (!al_init()) {
@@ -66,20 +70,20 @@ int main()
 	//hook up fonts for on-screen text
 	al_init_font_addon();
 	al_init_ttf_addon();
-	ALLEGRO_FONT *font = al_load_ttf_font("bloodthirsty.ttf", 72, 0);
+	ALLEGRO_FONT *font = al_load_ttf_font("graff.ttf", 72, 0);
 
 	//set up the two squares
 	bouncer = al_create_bitmap(BOUNCER_SIZE, BOUNCER_SIZE);
 
-	bouncer2 = al_create_bitmap(BOUNCER_SIZE, BOUNCER_SIZE);
+	//bouncer2 = al_create_bitmap(BOUNCER_SIZE, BOUNCER_SIZE);
 
 	al_set_target_bitmap(bouncer);
 
 	al_clear_to_color(al_map_rgb(255, 0, 255));
 
-	al_set_target_bitmap(bouncer2);
+	//al_set_target_bitmap(bouncer2);
 
-	al_clear_to_color(al_map_rgb(0, 255, 255));
+	//al_clear_to_color(al_map_rgb(0, 255, 255));
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 
@@ -129,7 +133,7 @@ int main()
 				bouncer_x += 4.0;
 			}
 
-			if (key2[KEY_W] && bouncer2_y >= 4.0) {
+		/*	if (key2[KEY_W] && bouncer2_y >= 4.0) {
 				bouncer2_y -= 4.0;
 			}
 
@@ -143,7 +147,7 @@ int main()
 
 			if (key2[KEY_D] && bouncer2_x <= SCREEN_W - BOUNCER_SIZE - 4.0) {
 				bouncer2_x += 4.0;
-			}
+			}*/
 
 			redraw = true;
 		}
@@ -172,21 +176,21 @@ int main()
 				key[KEY_RIGHT] = true;
 				break;
 
-			case ALLEGRO_KEY_W:
-				key2[KEY_W] = true;
-				break;
+			//case ALLEGRO_KEY_W:
+			//	key2[KEY_W] = true;
+			//	break;
 
-			case ALLEGRO_KEY_S:
-				key2[KEY_S] = true;
-				break;
+			//case ALLEGRO_KEY_S:
+			//	key2[KEY_S] = true;
+			//	break;
 
-			case ALLEGRO_KEY_A:
-				key2[KEY_A] = true;
-				break;
+			//case ALLEGRO_KEY_A:
+			//	key2[KEY_A] = true;
+			//	break;
 
-			case ALLEGRO_KEY_D:
-				key2[KEY_D] = true;
-				break;
+			//case ALLEGRO_KEY_D:
+			//	key2[KEY_D] = true;
+			//	break;
 
 
 			}
@@ -211,21 +215,21 @@ int main()
 				key[KEY_RIGHT] = false;
 				break;
 
-			case ALLEGRO_KEY_W:
-				key2[KEY_W] = false;
-				break;
+			//case ALLEGRO_KEY_W:
+			//	key2[KEY_W] = false;
+			//	break;
 
-			case ALLEGRO_KEY_S:
-				key2[KEY_S] = false;
-				break;
+			//case ALLEGRO_KEY_S:
+			//	key2[KEY_S] = false;
+			//	break;
 
-			case ALLEGRO_KEY_A:
-				key2[KEY_A] = false;
-				break;
+			//case ALLEGRO_KEY_A:
+			//	key2[KEY_A] = false;
+			//	break;
 
-			case ALLEGRO_KEY_D:
-				key2[KEY_D] = false;
-				break;
+			//case ALLEGRO_KEY_D:
+			//	key2[KEY_D] = false;
+			//	break;
 
 
 			}
@@ -237,11 +241,23 @@ int main()
 
 		al_draw_bitmap(bouncer, bouncer_x, bouncer_y, 0);
 
-		al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
+		//al_draw_bitmap(bouncer2, bouncer2_x, bouncer2_y, 0);
+	
+		//walls
+		al_draw_filled_rectangle(250, 300, 200, 100, al_map_rgb(0, 100, 250));
+		al_draw_filled_rectangle(100, 200, 300, 250, al_map_rgb(0, 100,250));
+		al_draw_filled_rectangle(400, 100, 199.7, 50, al_map_rgb(0, 100, 250));
+		al_draw_filled_rectangle(400, 100, 550, 50, al_map_rgb(0, 100,250));
 
-		//call the bounding box function. if it returns 1, print out your collision message
-		if (bounding_box_collision(bouncer_x, bouncer_y, 32, 32, bouncer2_x, bouncer2_y, 32, 32))
-			al_draw_text(font, al_map_rgb(255, 255, 255), 640 / 2, (480 / 4), ALLEGRO_ALIGN_CENTRE, "COLLISION!!");
+
+
+
+		
+	
+		
+		
+
+	
 
 		al_flip_display();
 
