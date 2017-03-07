@@ -32,17 +32,17 @@ int main()
 	int lives1 = 3;
 	int lives2 = 3;
 	int speed = 4;
-	float bouncer_x = 0;
-	float bouncer_y = 770;
+	float padle_x = 0;
+	float padle_y = 770;
 	bool key[4] = { false, false, false, false };
 	ALLEGRO_BITMAP *bouncer2 = NULL;
-	float bouncer2_x = 0;
-	float bouncer2_y = 0;
+	float padle2_x = 0;
+	float padle2_y = 0;
 	bool key2[4] = { false, false, false, false };
 	ALLEGRO_BITMAP *bouncer3 = NULL;
-	float bouncer3_x = 400;
-	float bouncer3_y = 200;
-	float bouncer3_dx = -8.0, bouncer3_dy = 8.0;
+	float ball_x = 400;
+	float ball_y = 200;
+	float ball_dx = -8.0, bounce_dy = 8.0;
 	bool redraw = true;
 	bool doexit = false;
 
