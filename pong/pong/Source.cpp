@@ -60,7 +60,6 @@ int main()
 	
 
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//here's our key states. they're all starting as "false" because nothing has been pressed yet.
 	//the first slot represents "up", then "down", "left" and "right"
@@ -117,22 +116,32 @@ int main()
 
 	//so the game loop is set to act on "ticks" of the timer OR keyboard presses 
 	//OR the mouse closing the display
+
+
+	sample3 = al_load_sample("ChillingMusic.wav");
+
+	instance3 = al_create_sample_instance(sample3);
+
+	al_set_sample_instance_playmode(instance3, ALLEGRO_PLAYMODE_LOOP);
+
+	al_attach_sample_instance_to_mixer(instance3, al_get_default_mixer());
+
+	al_play_sample_instance(instance3);
+
 	while (!doexit)
 	{
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
+
+
 		if (lives1 == 0 || lives2 == 0) {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_flip_display();
 			al_draw_text(font1, al_map_rgb(255, 0, 0), 320, 150, ALLEGRO_ALIGN_CENTRE, "Game Over");
 			al_flip_display();
 			al_rest(3);
-			al_destroy_bitmap(padle);
-			al_destroy_bitmap(padle2);
-			al_destroy_bitmap(ball);
-			al_destroy_timer(timer);
-			al_destroy_display(display);
-			al_destroy_event_queue(event_queue);
+			return 0; //kill program
+			
 		}
 
 
@@ -331,7 +340,7 @@ int main()
 	al_destroy_timer(timer);
 	al_destroy_display(display);
 	al_destroy_event_queue(event_queue);
-	al_destroy_sample(sample);
+	al_destroy_sample(sample3);
 
 	return 0;
 }
