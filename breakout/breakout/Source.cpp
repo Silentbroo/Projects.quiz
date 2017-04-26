@@ -236,7 +236,7 @@ int main()
 		if (lives1 == 0) {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_flip_display();
-			al_draw_text(font1, al_map_rgb(255, 0, 0), 500, 350, ALLEGRO_ALIGN_CENTRE, "Game Over");
+			al_draw_text (font1, al_map_rgb(255, 0, 0), 500, 350, ALLEGRO_ALIGN_CENTRE, "Game Over");
 			al_flip_display();
 			al_rest(3);
 			return 0; //kill program
