@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -12,7 +12,7 @@ using namespace std;
 class ghost {
 private:
 	int width, height;
-	
+
 	bool dead;
 	int dir;
 public:
@@ -37,7 +37,7 @@ public:
 const float FPS = 60;
 const int SCREEN_W = 1000;
 const int SCREEN_H = 800;
-const int BOUNCER_SIZE = 30; 
+const int BOUNCER_SIZE = 30;
 const int WALLSIZE = 40;
 const int DOT = 4;
 int wallCollide(int x, int y, int dir, int level[20][20]); //declaration
@@ -133,7 +133,7 @@ int main()
 	al_install_audio();
 	al_init_acodec_addon();
 	al_reserve_samples(2);
-	
+
 	ALLEGRO_SAMPLE *sample1 = NULL; //variable to hold the audio file
 	ALLEGRO_SAMPLE *sample2 = NULL;
 	ALLEGRO_SAMPLE_INSTANCE *instance1 = NULL;
@@ -164,8 +164,8 @@ int main()
 	ALLEGRO_FONT *font1 = al_load_ttf_font("sleep.ttf", 100, 0);
 	ALLEGRO_FONT *font2 = al_load_ttf_font("alice.ttf", 60, 0);
 	ALLEGRO_FONT *font3 = al_load_ttf_font("wah.ttf", 80, 0);
-	
-	
+
+
 	//set up the two squares
 	pacman = al_create_bitmap(BOUNCER_SIZE, BOUNCER_SIZE);
 	al_set_target_bitmap(pacman);
@@ -204,7 +204,7 @@ int main()
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
 	al_flip_display();
-	
+
 	al_draw_text(font3, ALLEGRO_COLOR(al_map_rgb(0, 0, 255)), 500, 350, 1, "Ready To Play!");
 	al_flip_display();
 	al_rest(4);
@@ -217,7 +217,7 @@ int main()
 	ghost3.set_values(365, 408, 30, 30);
 	ghost ghost4;
 	ghost4.set_values(365, 370, 30, 30);
-	
+
 	while (!doexit)
 
 	{
@@ -277,7 +277,7 @@ int main()
 			ghost2.chase2(ghost1.xPos, ghost1.yPos, level);
 			ghost3.chase3(bouncer_x, bouncer_y, level);
 			ghost4.chase4(bouncer_x, bouncer_y, level);
-			
+
 			//it's simple: we kill the pacman.
 			if (ghost1.killpac(bouncer_x, bouncer_y, BOUNCER_SIZE, BOUNCER_SIZE) == 1) {
 				lives1--;
@@ -304,12 +304,12 @@ int main()
 				//play death sound
 			}
 			if (ghost4.killpac(bouncer_x, bouncer_y, BOUNCER_SIZE, BOUNCER_SIZE) == 1) {
-					lives1--;
-					ghost4.xPos = 50;
-					ghost4.yPos = 700;
-					bouncer_x = 163;
-					bouncer_y = 250;
-					//play death sound
+				lives1--;
+				ghost4.xPos = 50;
+				ghost4.yPos = 700;
+				bouncer_x = 163;
+				bouncer_y = 250;
+				//play death sound
 			}
 
 
@@ -411,7 +411,7 @@ int main()
 		}
 		al_flip_display();
 	}
-	
+
 	al_destroy_bitmap(pacman);
 	al_destroy_bitmap(platform);
 	al_destroy_timer(timer);
@@ -455,7 +455,7 @@ int wallCollide(int x, int y, int dir, int level[20][20])
 	int new_y3;
 
 	if (dir == RIGHT) { 		// Moving Right
-								// Check along the far right side of the sprite, plus 3 (the amount we’re moving)
+								// Check along the far right side of the sprite, plus 3 (the amount weÂ’re moving)
 		new_x1 = x + 5 + BOUNCER_SIZE;
 		new_x2 = x + 5 + BOUNCER_SIZE;
 		new_x3 = x + 5 + BOUNCER_SIZE;
@@ -464,14 +464,14 @@ int wallCollide(int x, int y, int dir, int level[20][20])
 		new_y2 = y + BOUNCER_SIZE / 2;
 		new_y3 = y + BOUNCER_SIZE;
 
-		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40]==1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
+		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40] == 1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
 		{
 			cout << "right collision!" << endl;
 			return 1; //collision!
 		}
 	}
 	if (dir == LEFT) { 		// Moving LEFT
-							// Check along the far right side of the sprite, plus 3 (the amount we’re moving)
+							// Check along the far right side of the sprite, plus 3 (the amount weÂ’re moving)
 		new_x1 = x - 5;
 		new_x2 = x - 5;
 		new_x3 = x - 5;
@@ -481,45 +481,45 @@ int wallCollide(int x, int y, int dir, int level[20][20])
 		new_y2 = y + BOUNCER_SIZE / 2;
 		new_y3 = y + BOUNCER_SIZE;
 
-		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40]==1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
+		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40] == 1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
 		{
 			//cout << "LEFT collision!" << endl;
 			return 1; //collision!
 		}
 	}
 	if (dir == UP) { 		// Moving LEFT
-							// Check along the far right side of the sprite, plus 3 (the amount we’re moving)
+							// Check along the far right side of the sprite, plus 3 (the amount weÂ’re moving)
 		new_x1 = x;
 		new_x2 = x + BOUNCER_SIZE / 2;
 		new_x3 = x + BOUNCER_SIZE;
 
 		// Check at three point along that edge
-		new_y1 = y-5;
-		new_y2 = y-5;
-		new_y3 = y-5;
+		new_y1 = y - 5;
+		new_y2 = y - 5;
+		new_y3 = y - 5;
 
-		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40]==1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
+		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40] == 1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
 		{
 			//cout << "UP collision!" << endl;
 			return 1; //collision!
 		}
 	}
-			if (dir == DOWN) { 		// Moving LEFT
-									// Check along the far right side of the sprite, plus 3 (the amount we’re moving)
-				new_x1 = x;
-				new_x2 = x + BOUNCER_SIZE / 2;
-				new_x3 = x + BOUNCER_SIZE;
+	if (dir == DOWN) { 		// Moving LEFT
+							// Check along the far right side of the sprite, plus 3 (the amount weÂ’re moving)
+		new_x1 = x;
+		new_x2 = x + BOUNCER_SIZE / 2;
+		new_x3 = x + BOUNCER_SIZE;
 
-				// Check at three point along that edge
-				new_y1 = y+5 + BOUNCER_SIZE;
-				new_y2 = y+5 + BOUNCER_SIZE;
-				new_y3 = y+5 + BOUNCER_SIZE;
+		// Check at three point along that edge
+		new_y1 = y + 5 + BOUNCER_SIZE;
+		new_y2 = y + 5 + BOUNCER_SIZE;
+		new_y3 = y + 5 + BOUNCER_SIZE;
 
-				if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40]==1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
-				{
-					cout << "DOWN collision!" << endl;
-					return 1; //collision!
-				}
+		if ((level[new_y1 / 40][new_x1 / 40] == 1) || level[new_y2 / 40][new_x2 / 40] == 1 || (level[new_y3 / 40][new_x3 / 40] == 1))//add in for middle and bottom point
+		{
+			cout << "DOWN collision!" << endl;
+			return 1; //collision!
+		}
 	}
 	return 0;
 }
@@ -532,154 +532,6 @@ bool ghost::killpac(int b1_x, int b1_y, int b1_w, int b1_h) {
 		// no collision
 		return 0;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 	// collision
@@ -687,7 +539,7 @@ bool ghost::killpac(int b1_x, int b1_y, int b1_w, int b1_h) {
 }
 
 //chase function. x and y are pacman's position.
-void ghost::chase1(int x, int y, int level[20][20]){
+void ghost::chase1(int x, int y, int level[20][20]) {
 
 
 	/* dirs

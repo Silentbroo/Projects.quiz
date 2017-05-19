@@ -50,7 +50,7 @@ int main()
 	al_init_font_addon();
 	al_init_ttf_addon();
 	al_install_audio();
-	
+
 	ALLEGRO_FONT *font1 = al_load_ttf_font("sleep.ttf", 100, 0);
 	ALLEGRO_FONT *font2 = al_load_ttf_font("alice.ttf", 30, 0);
 	ALLEGRO_FONT *font3 = al_load_ttf_font("wah.ttf", 80, 0);
@@ -58,10 +58,10 @@ int main()
 	al_install_audio();
 	al_init_acodec_addon();
 	al_reserve_samples(10);
-	
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//here's our key states. they're all starting as "false" because nothing has been pressed yet.
 	//the first slot represents "up", then "down", "left" and "right"
 	//key2 represents"w","a","s","d"
@@ -94,7 +94,7 @@ int main()
 	al_set_target_bitmap(padle2);
 
 	al_clear_to_color(al_map_rgb(0, 255, 100));
-	
+
 
 
 	al_set_target_bitmap(al_get_backbuffer(display));
@@ -111,7 +111,7 @@ int main()
 
 	al_start_timer(timer);
 
-	al_draw_text(font3, ALLEGRO_COLOR ( al_map_rgb(0, 0, 255)), 320, 150, 1, "Ready To Play!");
+	al_draw_text(font3, ALLEGRO_COLOR(al_map_rgb(0, 0, 255)), 320, 150, 1, "Ready To Play!");
 	al_flip_display();
 	al_rest(4);
 
@@ -142,7 +142,7 @@ int main()
 			al_flip_display();
 			al_rest(3);
 			return 0; //kill program
-			
+
 		}
 
 
@@ -161,7 +161,7 @@ int main()
 			//move the box right by 4 pixels
 			if (key[1] && padle_x <= 640 - 32) {
 				padle_x += 5.0;
-		
+
 			}
 
 
@@ -169,14 +169,14 @@ int main()
 			if (ball_x < 0 || ball_x > 640 - 32) {
 				//flip the x direction
 				ball_dx = -ball_dx;
-		
+
 
 			}
 
 
 			if (key2[0] && padle2_x >= 0) {
 				padle2_x -= 5.0;
-		
+
 			}
 
 
@@ -185,29 +185,29 @@ int main()
 			}
 			///////////////////AI
 			if (padle2_x < ball_x) {
-				
+
 				padle2_x += 6.0;
 			}
-		else if (padle2_x > ball_x) {
-				
+			else if (padle2_x > ball_x) {
+
 				padle2_x -= 6.0;
 			}
 			//if the box hits the top wall OR the bottom wall
 			if (ball_y > 480 - 32) {
-								//flip the y direction
-								ball_x = 150;
-								ball_y = 250;
-								ball_dx = -5.0, ball_dy = 5.0;
-								lives2--;
-							}
-							if(ball_y < 0 - 32) {
-								//flip the y direction
-								ball_x = 150;
-								ball_y = 250;
-								ball_dx = -5.0, ball_dy = 5.0;
-								lives1--;
-							}
-					
+				//flip the y direction
+				ball_x = 150;
+				ball_y = 250;
+				ball_dx = -5.0, ball_dy = 5.0;
+				lives2--;
+			}
+			if (ball_y < 0 - 32) {
+				//flip the y direction
+				ball_x = 150;
+				ball_y = 250;
+				ball_dx = -5.0, ball_dy = 5.0;
+				lives1--;
+			}
+
 
 			//collision
 			if (bounding_box_collision(padle_x, padle_y, 150, 32, ball_x, ball_y, 25, 25)) {
@@ -313,19 +313,19 @@ int main()
 
 			//the algorithm above just changes the x and y coordinates
 			//here's where the bitmap is actually drawn somewhere else
-			al_draw_bitmap(image, 0,0, 0);
+			al_draw_bitmap(image, 0, 0, 0);
 			al_draw_bitmap(padle, padle_x, padle_y, 0);
 
 			al_draw_bitmap(padle2, padle2_x, padle2_y, 0);
 
 			al_draw_bitmap(ball, ball_x, ball_y, 0);
 			//call the bounding box function. if it returns 1, print out your collision message
-					al_draw_text(font2, al_map_rgb(255,255,255),50,150,ALLEGRO_ALIGN_CENTRE,"lives");
-				al_draw_textf(font2, al_map_rgb(255,255,255),90,150,ALLEGRO_ALIGN_CENTRE, "%d", lives1);
-			
-					al_draw_text(font2, al_map_rgb(255,255,255),50,350,ALLEGRO_ALIGN_CENTRE,"lives");
-					al_draw_textf(font2, al_map_rgb(255,255,255),90,350,ALLEGRO_ALIGN_CENTRE, "%d", lives2);
-	
+			al_draw_text(font2, al_map_rgb(255, 255, 255), 50, 150, ALLEGRO_ALIGN_CENTRE, "lives");
+			al_draw_textf(font2, al_map_rgb(255, 255, 255), 90, 150, ALLEGRO_ALIGN_CENTRE, "%d", lives1);
+
+			al_draw_text(font2, al_map_rgb(255, 255, 255), 50, 350, ALLEGRO_ALIGN_CENTRE, "lives");
+			al_draw_textf(font2, al_map_rgb(255, 255, 255), 90, 350, ALLEGRO_ALIGN_CENTRE, "%d", lives2);
+
 
 
 

@@ -33,13 +33,16 @@ int main()
 	ALLEGRO_BITMAP *image2 = NULL;
 
 	//here's the bouncer's x and y coordinates on the screen
-	int lives1 = 4;
+	int lives1 = 6;
+	int score = 0;
 	float padle_x = 250;
 	float padle_y = 867;
 	float ball_x = 90;
 	float ball_y = 90;
-	float ball_dx = -5.0, ball_dy = 5.0;
 	int bounding_box_collision(int b1_x, int b1_y, int b1_w, int b1_h, int b2_x, int b2_y, int b2_w, int b2_h);
+	int speed1 = 12;
+	int speed2 = 10;
+	float ball_dx = -speed2, ball_dy = speed2;
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	al_init();
@@ -236,7 +239,9 @@ int main()
 		if (lives1 == 0) {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_flip_display();
-			al_draw_text (font1, al_map_rgb(255, 0, 0), 500, 350, ALLEGRO_ALIGN_CENTRE, "Game Over");
+			al_draw_text(font2, al_map_rgb(0, 255, 255), 754, 450, ALLEGRO_ALIGN_CENTRE, "Score:");
+			al_draw_textf(font2, al_map_rgb(0, 255, 255), 890, 450, ALLEGRO_ALIGN_CENTRE, "%d", score);
+			al_draw_text(font1, al_map_rgb(255, 0, 0), 500, 350, ALLEGRO_ALIGN_CENTRE, "Game Over");
 			al_flip_display();
 			al_rest(3);
 			return 0; //kill program
@@ -261,6 +266,8 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick1.killBrick(); //when you hit it, kill it
+				score += 10;
+
 			}
 		}
 		if (!Brick2.isDead() && bounding_box_collision(110, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -269,6 +276,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick2.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick3.isDead() && bounding_box_collision(220, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -277,6 +285,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick3.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick4.isDead() && bounding_box_collision(330, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -285,6 +294,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick4.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick5.isDead() && bounding_box_collision(440, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -293,6 +303,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick5.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick6.isDead() && bounding_box_collision(550, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -301,6 +312,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick6.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick7.isDead() && bounding_box_collision(660, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -309,6 +321,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick7.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick8.isDead() && bounding_box_collision(770, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -317,6 +330,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick8.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick9.isDead() && bounding_box_collision(880, 0, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -325,6 +339,7 @@ int main()
 				al_play_sample_instance(instance3);
 				ball_dy = -ball_dy;
 				Brick9.killBrick();
+				score += 10;
 			}
 		}
 		///////////////////////////////ROW 2//////////////////
@@ -335,6 +350,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick10.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick11.isDead() && bounding_box_collision(110, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -343,6 +359,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick11.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick12.isDead() && bounding_box_collision(220, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -351,6 +368,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick12.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick13.isDead() && bounding_box_collision(330, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -359,6 +377,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick13.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick14.isDead() && bounding_box_collision(440, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -367,6 +386,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick14.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick15.isDead() && bounding_box_collision(550, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -375,6 +395,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick15.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick16.isDead() && bounding_box_collision(660, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -383,6 +404,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick16.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick17.isDead() && bounding_box_collision(770, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -391,6 +413,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick17.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick18.isDead() && bounding_box_collision(880, 50, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -399,6 +422,7 @@ int main()
 				al_play_sample_instance(instance2);
 				ball_dy = -ball_dy;
 				Brick18.killBrick();
+				score += 10;
 			}
 		}
 		///////////////////////////////ROW 3//////////////////
@@ -409,6 +433,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick19.killBrick();
+				
 			}
 		}
 		if (!Brick20.isDead() && bounding_box_collision(110, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -417,6 +442,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick20.killBrick();
+			
 			}
 		}
 		if (!Brick21.isDead() && bounding_box_collision(220, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -425,6 +451,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick21.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick22.isDead() && bounding_box_collision(330, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -433,6 +460,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick22.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick23.isDead() && bounding_box_collision(440, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -441,6 +469,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick23.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick24.isDead() && bounding_box_collision(550, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -449,6 +478,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick24.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick25.isDead() && bounding_box_collision(660, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -457,6 +487,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick25.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick26.isDead() && bounding_box_collision(770, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -465,6 +496,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick26.killBrick();
+				score += 10;
 			}
 		}
 		if (!Brick27.isDead() && bounding_box_collision(880, 100, 100, 40, ball_x, ball_y, 50, 50)) {
@@ -473,6 +505,7 @@ int main()
 				al_play_sample_instance(instance1);
 				ball_dy = -ball_dy;
 				Brick27.killBrick();
+				score += 10;
 			}
 		}
 		//////////////////////////////////////////////////////////////////////////////////////////////////
@@ -507,11 +540,9 @@ int main()
 			//if the box hits the top wall OR the bottom wall
 			if (ball_y > 900 - 32) {
 				//flip the y direction
-				ball_dx *= 1.2;
-				ball_dy *= 1.2;
 				ball_x = 150;
 				ball_y = 250;
-				ball_dx = -5.0, ball_dy = 5.0;
+			 ball_dx = -speed2, ball_dy = speed2;
 			
 				lives1--;
 			
@@ -630,6 +661,9 @@ int main()
 			//call the bounding box function. if it returns 1, print out your collision message
 			al_draw_text(font2, al_map_rgb(0, 255, 255), 50, 450, ALLEGRO_ALIGN_CENTRE, "lives");
 			al_draw_textf(font2, al_map_rgb(0, 255, 255), 120, 450, ALLEGRO_ALIGN_CENTRE, "%d", lives1);
+			////score
+			al_draw_text(font2, al_map_rgb(0, 255, 255), 754, 450, ALLEGRO_ALIGN_CENTRE, "Score:");
+			al_draw_textf(font2, al_map_rgb(0, 255, 255), 890, 450, ALLEGRO_ALIGN_CENTRE, "%d", score);
 			/////bricks
 			if (Brick1.isDead() == false) {
 				Brick1.drawBrick();
